@@ -1,0 +1,13 @@
+python-dotenv
+uvicorn
+aiofiles
+jinja2
+fastapi==0.68.1
+python-multipart==0.0.5
+SQLAlchemy==1.4.25
+mysqlclient
+tensorflow==2.6.2
+opencv-python
+scikit-learn 
+scipy 
+matplotlib

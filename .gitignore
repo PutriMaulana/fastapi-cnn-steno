@@ -1,0 +1,12 @@
+__pycache__/
+*.jpeg
+*.jpg
+*.png
+.env
+Env
+Env37
+*.h5
+*.ipynb
+*.sql
+/api/app/libs/clasifier-model.h5
+# uvicorn main:app --reload --host 0.0.0.0

@@ -1,0 +1,46 @@
+version: '3.3'
+services:
+  dbs:
+    image: mysql:8.0
+    restart: always
+    environment:
+      MYSQL_DATABASE: 'db_tugas_akhir'
+      MYSQL_USER: 'user'
+      MYSQL_PASSWORD: 'password'
+      MYSQL_ROOT_PASSWORD: 'password'
+    ports:
+      - '13306:3306'
+    expose:
+      - '13306'
+    volumes:
+      - my-db:/var/lib/mysql
+
+  api:
+    build: $PWD/api
+    volumes:
+      - $PWD/api/app:/app
+    ports:
+      - "8000:8000"
+    environment:
+      - TA_HOST
+      - TA_PORT
+      - TA_DATABASE
+      - TA_USER
+      - TA_PASSWORD
+      - TA_MODEL_PATH
+    restart: unless-stopped
+    depends_on:
+      - dbs
+    links:
+      - dbs
+    command: ["uvicorn", "main:app", "--reload", "--host", "0.0.0.0"]
+
+  adminer:
+    image: 'adminer'
+    ports: 
+      - '8081:8080'
+    links:
+      - dbs
+
+volumes:
+  my-db:

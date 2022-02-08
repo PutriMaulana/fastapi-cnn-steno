@@ -1,0 +1,105 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+<div class="container">
+  {% include "snippets/navbar.html" ignore missing %}
+</div>
+<br>
+<div class="container-sm pt-5">
+  <figure class="text-center">
+    <blockquote class="blockquote">
+      <p>Klasifikasi Data</p>
+      <br>
+
+    </blockquote>
+
+  </figure>
+
+
+
+</div>
+
+
+<div class="container-sm">
+  <center>
+    <a href="/klasifikasi/tambah_data"><button type="button" class="btn btn-success">Tambah Data</button> </a>
+    <br>
+    <br>
+    <h6 style="color:green;">{{message}}</h6>
+    <table class="table table-primary table-striped" style="width:40%;">
+      <tr>
+        <td>No</td>
+        <td>Image</td>
+        <!-- <td>Prediction</td> -->
+        <!-- <td style="width:40%;">Nama File</td> -->
+        <td style="width:30%;">Action</td>
+      </tr>
+      {% for fila in files %}
+      <tr>
+        <td>{{loop.index}}</td>
+        <td><img src="{{ url_for('static', path='/data_testing/'+fila.name_file) }}" class="rounded" width="70"></td>
+        <!-- <td>{{fila.klasifikasi}}</td> -->
+        <!-- <td>{{fila.name}}</td> -->
+        <td>
+          <div class="btn-group" role="group" aria-label="Basic example">
+            <a href="run/{{fila.id}}">
+              <button type="button" class="btn btn-primary">Klasifikasi</button>
+            </a>
+            <a href="delete/{{fila.id}}"><button type="button" class="btn btn-danger">Hapus</button></a>
+
+          </div>
+        </td>
+      </tr>
+      {% endfor %}
+    </table>
+
+    <br>
+    <H5>Clasified</H5>
+    <table class="table table-primary table-striped">
+      <tr>
+        <td>No</td>
+        <td>Image</td>
+        <td style="width:20%;">Prediction</td>
+        <!-- <td style="width:40%;">Nama File</td> -->
+        <td style="width:20%;">Action</td>
+        <td style="width:30%;">Save</td>
+      </tr>
+      {% for fila in file_clasifieds %}
+      <tr>
+        <td>{{loop.index}}</td>
+        <td><img src="{{ url_for('static', path='/data_testing/'+fila.name_file) }}" class="rounded" width="70"></td>
+        <td><h4>{{fila.klasifikasi}}</h3></td>
+        <!-- <td>{{fila.name}}</td> -->
+        <td>
+          <!-- <div class="btn-group" role="group" aria-label="Basic example"> -->
+            <a href="run/{{fila.id}}">
+              <button type="button" class="btn btn-primary">Re-Klasifikasi</button>                  
+            </a>
+            <br>
+            <a href="delete/{{fila.id}}"><button type="button" class="btn btn-danger">Hapus</button></a>
+            
+          <!-- </div>   -->
+        </td>
+        <td>
+          <form action="save/{{fila.id}}">
+            True Class  :
+            <select id="true_class" name="true_class" required>
+              <option value="">-- Pilih --</option>
+              {% for class in classes %}
+              <option value="{{class}}">{{class}}</option>
+              {% endfor %}                  
+              <!-- <option value="Tidak dikenal">Tidak dikenal</option> -->
+              
+            </select>
+            <br>
+            <br>
+              <button type="submit" class="btn btn-primary">Save</button>                  
+            </form>
+        </td>
+      </tr>
+      {% endfor %}
+    </table>
+  </center>
+</div>
+{% endblock %}

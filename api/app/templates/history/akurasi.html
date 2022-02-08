@@ -1,0 +1,96 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+<div class="container">
+    {% include "snippets/navbar.html" ignore missing %}
+</div>
+<br>
+<div class="container pt-5">
+    <figure class="text-center">
+        <blockquote class="blockquote">
+            <p>Akurasi Data: {{akurasi['akurasi']}}%</p>
+            <br>
+        </blockquote>
+    </figure>
+</div>
+
+<div class="container-sm">
+        <!-- <table class="table table-primary table-striped" style="width:40%;">
+            <tr>
+                <td>Prediksi benar</td>
+                <td>:</td>
+                <td>{{akurasi.data_benar}}</td>
+            </tr>
+            <tr>
+                <td>Prediksi salah</td>
+                <td>:</td>
+                <td>{{akurasi.data_salah}}</td>
+            </tr>
+            <tr>
+                <td>Total data</td>
+                <td>:</td>
+                <td>{{akurasi.total_data}}</td>
+            </tr>
+            <tr>
+                <td>Akurasi</td>
+                <td>:</td>
+                <td>{{akurasi.akurasi}} %</td>
+            </tr>
+        </table> -->
+        {% for data in akurasi['hasil_akurasi'] %}
+            <div class="shadow p-3 mb-5 bg-body rounded container">
+                <h2>{{data.label}}</h2>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="card">
+                            <div class="seo-fact sbg2">
+                                <div class="p-4 d-flex justify-content-between align-items-center">
+                                    <div class="seofct-icon">Precision</div>
+                                    <h2>{{data.precision}}%</h2>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="card">
+                            <div class="seo-fact sbg2">
+                                <div class="p-4 d-flex justify-content-between align-items-center">
+                                    <div class="seofct-icon">Recall</div>
+                                    <h2>{{data.recall}}%</h2>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="row mt-3">
+                    <div class="col-md-6">
+                        <div class="card">
+                            <div class="seo-fact sbg2">
+                                <div class="p-4 d-flex justify-content-between align-items-center">
+                                    <div class="seofct-icon">F1 Score</div>
+                                    <h2>{{data.f1_score}}%</h2>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="card">
+                            <div class="seo-fact sbg2">
+                                <div class="p-4 d-flex justify-content-between align-items-center">
+                                    <div class="seofct-icon">Support</div>
+                                    <h2>{{data.support}}</h2>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+</div>
+
+
+{% endblock %}

@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+	<div class="container">        
+        {% include "snippets/navbar.html" ignore missing %}
+    </div>
+    <br>
+    <div class="container">
+        <figure class="text-center">
+          <blockquote class="blockquote">
+            <p>Klasifikasi Data</p>
+            <br>            
+          </blockquote>
+        </figure>        
+    </div>
+
+    <div class="container-sm">
+      <center>
+
+      <table class="table table-primary table-striped" style="width:50%;">
+        <tr>
+          <td style="text-align:center"><img src="{{ url_for('static', path='/data_testing/'+file.name_file) }}" class="rounded" width="200"></td>
+        </tr>
+        <tr>
+          <td style="text-align:center">:</td>
+        </tr>
+        <tr>
+          <td style="text-align:center">Gambar teridentifikasi {{file.klasifikasi}}</td>          
+        </tr>
+        <tr>
+          <td style="text-align:center">Status {{file.status}}</td>          
+        </tr>
+      </table>
+      
+        </center>
+    </div>
+{% endblock %}

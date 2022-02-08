@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+	<div class="container">        
+        {% include "snippets/navbar.html" ignore missing %}
+    </div>
+    <br>
+    <div class="container-sm">
+        <figure class="text-center">
+          <blockquote class="blockquote">
+            <p>Klasifikasi Data</p>
+            <br>
+            
+          </blockquote>
+          
+        </figure>
+
+        
+
+    </div>
+    
+
+    <div class="container-sm">
+      <center>
+      <a href="/akurasi/tambah_data"><button type="button" class="btn btn-success">Tambah Data</button> </a>
+      <br>
+      <br>
+      <h6 style="color:green;">{{message}}</h6>
+      <table class="table table-primary table-striped" style="width:80%;">
+          <tr>
+            <td>No</td>
+            <td>Image</td>
+            <td style="width:40%;">Class True</td>
+            <td style="width:40%;">Class Prediction</td>
+            <td style="width:40%;">Status</td>
+            <td style="width:30%;">Action</td>
+          </tr>
+          {% for fila in files %}
+          <tr>
+            <td>{{loop.index}}</td>
+            <td><img src="{{ url_for('static', path='/data_testing/'+fila.name_file) }}" class="rounded" width="70"></td>
+            <td>{{fila.name}}</td>
+            <td>{{fila.klasifikasi}}</td>
+            <td>{{fila.status}}</td>
+            <td>
+              <div class="btn-group" role="group" aria-label="Basic example">
+                <a href="run/{{fila.id}}">
+                  <button type="button" class="btn btn-primary">Klasifikasi</button>                  
+                </a>
+                <a href="delete/{{fila.id}}"><button type="button" class="btn btn-danger">Hapus</button></a>
+                
+              </div>  
+            </td>
+          </tr>
+          {% endfor %}
+          <tr>
+            <td></td>
+            <td>Result : </td>
+          </tr>
+          <tr>
+            <td colspan="3">Data benar : {{akurasi.data_benar}}</td>
+            <td colspan="1"> Total Data : {{akurasi.total_data}}</td>
+            <td colspan="2">Akurasi: {{akurasi.akurasi}} %</td>
+          </tr>
+        </table>
+        </center>
+    </div>
+{% endblock %}

@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+	<div class="container">        
+        {% include "snippets/navbar.html" ignore missing %}
+    </div>
+    <br>
+    <div class="container-sm pt-5">
+        <figure class="text-center">
+          <blockquote class="blockquote">
+            <p>Upload Data</p>
+            <br>
+            
+          </blockquote>
+          
+        </figure>
+
+        
+
+    </div>
+
+    <div class="container-sm">
+      <center>
+        <form method="POST" enctype="multipart/form-data">
+        <table border="0">          
+          <tr>
+            <td>
+              <center><input name="image" type="file"></center>
+            </td>            
+          </tr>
+        </table>
+        <br>
+        <br>
+        <button type="submit" class="btn btn-success">Tambah Data</button> 
+        </form>
+      
+      </center>
+    </div>
+{% endblock %}
