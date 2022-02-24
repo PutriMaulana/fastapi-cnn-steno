@@ -5,8 +5,5 @@ __pycache__/
 .env
 Env
 Env37
-*.h5
-*.ipynb
-*.sql
-/api/app/libs/clasifier-model.h5
+.ipynb
 # uvicorn main:app --reload --host 0.0.0.0
